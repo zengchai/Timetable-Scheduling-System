@@ -5,6 +5,8 @@ public class Course {
     private String lecname;
     private int atime;
     private int counter;
+    public Course(){
+    }
     public Course(int chour){
         this.chour = chour;
     }
@@ -12,11 +14,12 @@ public class Course {
         this.name = name;
         this.code = code;
         this.chour = chour;
+        this.counter = chour;
         this.lecname = lecname;
         this.atime = atime;
     }
-    public void setCounter(int counter) {
-        this.counter = counter;
+    public void setCounter() {
+        this.counter -=1;
     }
     public String getName() {
         return name;
@@ -28,7 +31,6 @@ public class Course {
         return counter;
     }
     public int getChour() {
-        this.counter = chour;
         return chour;
     }
     public String getLecname() {

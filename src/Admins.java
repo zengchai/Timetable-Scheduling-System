@@ -76,9 +76,11 @@ public class Admins {
         int count = 0;
         int counter = 0;
         int time = 1;
-        Course min = course.get(0);
+        Course min;
         ArrayList<Course> tmpcourselist = new ArrayList<Course>();
         do{
+            min = new Course(classtime);
+                min = new Course(classtime);
             for(int i=0;i<course.size();i++){
                 if(course.get(i).getAtime()<=count){
                 if(course.get(i).getChour()<min.getChour()){
@@ -87,22 +89,28 @@ public class Admins {
                     System.out.println(i);
                 }}
             }
+            System.out.println(counter);
+            System.out.println(course.get(counter).getCounter());
+                if(course.get(counter).getCounter()>0)
+                {
                 tmpcourselist.add(min);
-                if(course.get(counter).getCounter()>=0)
-                {course.get(counter).setCounter(course.get(counter).getCounter()-1);
-                min = course.get(0);}
-                else{course.remove(min);
-                if(course.size()!=0){
-                min = course.get(0);
-                }
-                else{
-                min = new Course(null, null, 0, null, 0);
-                }}
+                course.get(counter).setCounter();
+            if(course.size()!=0){
                 System.out.println("Class " + (count+1));
                 System.out.println("Course Name: "+ tmpcourselist.get(count).getName());
                 System.out.println("Course Code: "+ tmpcourselist.get(count).getCode());
                 System.out.println("Course Credit Hour: "+ tmpcourselist.get(count).getChour());
-                count+=1;
+                count+=1;}
+                else{
+                System.out.println("Class " + (count+1));
+                System.out.println("Course Name: NULL");
+                System.out.println("Course Code: NULL");
+                System.out.println("Course Credit Hour: 0");
+                }}
+                else{
+            System.out.println(course.get(counter).getCounter()+"sdsa");
+            course.remove(counter);
+                }
         }while(count < z);
         course = tmpcourselist;
     }
