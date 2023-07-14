@@ -39,6 +39,7 @@ public class Admins {
             this.srt();
         }
         else if(option == 4){
+            this.roundRobin();
         }
         else if(option == 5){
         }
@@ -111,7 +112,62 @@ public class Admins {
         }while(count < z);
     }
 
+    public void roundRobin()
+    {
+        System.out.print("Enter the quantum time: ");  
+        int quantumTime = z.nextInt();  
+        int rem_bt;
+        int temp;
+        int sq = 0;
+        int count = 0;
+        int turnaroundTime[] = new int[course.size()];
+        int waitingTime[] = new int[course.size()];
+        int averageWaitingTime = 0;
+        int averageTurnaroundTime = 0;
 
+        while(true)  
+        {  
+            for (int i=0;i<course.size();i++)  
+            {  
+                rem_bt = course.get(i).getChour();
+                
+                temp = quantumTime;  
+                if(rem_bt == 0)  
+                {  
+                    count++;  
+                    continue;  
+                }  
+                if(rem_bt>quantumTime)  
+                    rem_bt= rem_bt - quantumTime;  
+                else  
+                if(rem_bt>=0)  
+                {  
+                    temp = rem_bt;  
+                    rem_bt = 0;  
+                }  
+                sq = sq + temp;  
+                turnaroundTime[i] = sq;  
+            } 
+           
+            break;   
+        }  
+        System.out.print("--------------------------------------------------------------------------------");  
+        System.out.print("\nProcess\t      Burst Time\t       Turnaround Time\t          Waiting Time\n");  
+        System.out.print("--------------------------------------------------------------------------------");  
+        for(int i=0;i<course.size();i++)  
+        {  
+            waitingTime[i]=turnaroundTime[i]-course.get(i).getChour();
+            averageWaitingTime=averageWaitingTime+waitingTime[i];  
+            averageTurnaroundTime=averageTurnaroundTime+turnaroundTime[i];  
+            System.out.print("\n "+(i+1)+"\t "+course.get(i).getChour()+"\t\t "+turnaroundTime[i]+"\t\t "+waitingTime[i]+"\n");  
+        }  
+        /*averageWaitingTime=averageWaitingTime/course.size();;  
+        averageTurnaroundTime=averageTurnaroundTime/course.size();;  
+        System.out.println("\nAverage waiting Time = "+averageWaitingTime+"\n");  
+        System.out.println("Average turnaround time = "+averageTurnaroundTime);  */
+    
+        System.out.println();
+    }
 
 
 
