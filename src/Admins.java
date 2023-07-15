@@ -32,8 +32,8 @@ public class Admins {
         do{
         System.out.println("\nWelcome to Timetable Scheduling System");
         System.out.println("\n1. Set Timetable");
-        System.out.println("2. SRT schedulling");
-        System.out.println("3. Round Robbin schedulling");
+        System.out.println("2. SRT scheduling");
+        System.out.println("3. Round Robbin scheduling");
         System.out.println("4. Exit");
         System.out.print("\nEnter your option: ");
         option = z.nextInt();
