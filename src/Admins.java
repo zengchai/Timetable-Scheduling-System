@@ -30,7 +30,7 @@ public class Admins {
     public void menu(){
         int option = 0;
         do{
-        System.out.println("Welcome to Timetable Scheduling System");
+        System.out.println("\nWelcome to Timetable Scheduling System");
         System.out.println("\n1. Set Timetable");
         System.out.println("2. SRT schedulling");
         System.out.println("3. Round Robbin schedulling");
@@ -90,6 +90,7 @@ public class Admins {
         Course min;
         ArrayList<Course> course = this.copiarArrayList();
         ArrayList<Course> tmpcourselist = new ArrayList<Course>();
+        System.out.printf("\n%-5s%-25s%-15s%-15s%-20s","No","Class Name","Class Code","Credit Hour","Lecture Name");
         do{
             min = new Course(classtime);
             for(int i=0;i<course.size();i++){
@@ -104,20 +105,15 @@ public class Admins {
                 {
                     tmpcourselist.add(min);
                     course.get(counter).setCounter();
-                    System.out.println("Class " + (count+1));
-                    System.out.println("Course Name: "+ tmpcourselist.get(count).getName());
-                    System.out.println("Course Code: "+ tmpcourselist.get(count).getCode());
-                    System.out.println("Course Credit Hour: "+ tmpcourselist.get(count).getChour());
+                    System.out.printf("\n%-5s%-25s%-15s%-15s%-20s",count+1,tmpcourselist.get(count).getName(),tmpcourselist.get(count).getCode(),
+                    tmpcourselist.get(count).getChour(),tmpcourselist.get(count).getLecname());
                     count+=1;
                     System.out.println();
                 }else{
                     course.remove(counter);
                 }}
                 else{
-                    System.out.println("Class " + (count+1));
-                    System.out.println("Course Name: NULL");
-                    System.out.println("Course Code: NULL");
-                    System.out.println("Course Credit Hour: 0");
+                    System.out.printf("%-5s%-25s%-15s%-15s%-20s"," "," "," "," "," ");
                     System.out.println();
                     count+=1;
                 }
@@ -135,7 +131,8 @@ public class Admins {
         Course c;
         ArrayList<Course> course = this.copiarArrayList();
         ArrayList<Course> tmpcourselist = new ArrayList<Course>(classtime);
-        
+        System.out.printf("\n%-5s%-25s%-15s%-15s%-20s","No","Class Name","Class Code","Credit Hour","Lecture Name");
+
         while(count < z){
             c = new Course(classtime);
             if(course.size()!=0){
@@ -157,10 +154,8 @@ public class Admins {
                             {
                                 tmpcourselist.add(c);
                                 course.get(counter).setCounter();//decrement by 1
-                                System.out.println("Class " + (count+1));
-                                System.out.println("Course Name: "+ tmpcourselist.get(count).getName());
-                                System.out.println("Course Code: "+ tmpcourselist.get(count).getCode());
-                                System.out.println("Course Credit Hour: "+ tmpcourselist.get(count).getChour());
+                                System.out.printf("\n%-5s%-25s%-15s%-15s%-20s",count+1,tmpcourselist.get(count).getName(),tmpcourselist.get(count).getCode(),
+                                tmpcourselist.get(count).getChour(),tmpcourselist.get(count).getLecname());
                                 System.out.println();
                                 count+=1; 
                 
@@ -180,10 +175,8 @@ public class Admins {
                                     {
                                         tmpcourselist.add(c);
                                         course.get(counter).setCounter();//decrement by 1
-                                        System.out.println("Class " + (count+1));
-                                        System.out.println("Course Name: "+ tmpcourselist.get(count).getName());
-                                        System.out.println("Course Code: "+ tmpcourselist.get(count).getCode());
-                                        System.out.println("Course Credit Hour: "+ tmpcourselist.get(count).getChour());
+                                        System.out.printf("\n%-5s%-25s%-15s%-15s%-20s",count+1,tmpcourselist.get(count).getName(),tmpcourselist.get(count).getCode(),
+                                        tmpcourselist.get(count).getChour(),tmpcourselist.get(count).getLecname());
                                         System.out.println();
                                         count+=1;
                                     }
@@ -194,10 +187,7 @@ public class Admins {
                 }
             }
             else if(course.isEmpty()){
-                System.out.println("Class " + (count+1));
-                System.out.println("Course Name: NULL");
-                System.out.println("Course Code: NULL");
-                System.out.println("Course Credit Hour: 0");
+                System.out.printf("%-5s%-25s%-15s%-15s%-20s"," "," "," "," "," ");
                 System.out.println();
                 count+=1;
             }
