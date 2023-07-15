@@ -96,6 +96,7 @@ public class Admins {
                     System.out.println("Course Code: "+ tmpcourselist.get(count).getCode());
                     System.out.println("Course Credit Hour: "+ tmpcourselist.get(count).getChour());
                     count+=1;
+                    System.out.println();
                 }else{
                     course.remove(counter);
                 }}
@@ -104,6 +105,7 @@ public class Admins {
                     System.out.println("Course Name: NULL");
                     System.out.println("Course Code: NULL");
                     System.out.println("Course Credit Hour: 0");
+                    System.out.println();
                     count+=1;
                 }
         }while(count < z);
@@ -114,60 +116,78 @@ public class Admins {
     {
         System.out.print("Enter the quantum time: ");  
         int quantumTime = z.nextInt();  
-        int rem_bt;
-        int temp;
-        int sq = 0;
+        int z = classtime;
         int count = 0;
-        int turnaroundTime[] = new int[course.size()];
-        int waitingTime[] = new int[course.size()];
-        int averageWaitingTime = 0;
-        int averageTurnaroundTime = 0;
-
-        while(true)  
-        {  
-            for (int i=0;i<course.size();i++)  
-            {  
-                rem_bt = course.get(i).getChour();
+        int counter = 0;
+        Course c;
+        ArrayList<Course> tmpcourselist = new ArrayList<Course>(classtime);
+        
+        while(count < z){
+            c = new Course(classtime);
+            if(course.size()!=0){
+                for(int i=0;i<course.size();i++)
+                {
+                    if(course.get(i).getAtime()<=count)
+                    {
+                        if(course.get(i).getCounter()<=quantumTime) //getCounter = getChour
+                        {
+                            c = course.get(i);
+                            counter = i;
+                            
+                            if(course.get(counter).getCounter()==0)
+                            {
+                                course.remove(counter);
+                                break;
+                            }   
+                            while(course.get(counter).getCounter()!=0)//loop until all process done then proceed to unfinish process
+                            {
+                                tmpcourselist.add(c);
+                                course.get(counter).setCounter();//decrement by 1
+                                System.out.println("Class " + (count+1));
+                                System.out.println("Course Name: "+ tmpcourselist.get(count).getName());
+                                System.out.println("Course Code: "+ tmpcourselist.get(count).getCode());
+                                System.out.println("Course Credit Hour: "+ tmpcourselist.get(count).getChour());
+                                System.out.println();
+                                count+=1; 
                 
-                temp = quantumTime;  
-                if(rem_bt == 0)  
-                {  
-                    count++;  
-                    continue;  
-                }  
-                if(rem_bt>quantumTime)  
-                    rem_bt= rem_bt - quantumTime;  
-                else  
-                if(rem_bt>=0)  
-                {  
-                    temp = rem_bt;  
-                    rem_bt = 0;  
-                }  
-                sq = sq + temp;  
-                turnaroundTime[i] = sq;  
-            } 
-           
-            break;   
-        }  
-        System.out.print("--------------------------------------------------------------------------------");  
-        System.out.print("\nProcess\t      Burst Time\t       Turnaround Time\t          Waiting Time\n");  
-        System.out.print("--------------------------------------------------------------------------------");  
-        for(int i=0;i<course.size();i++)  
-        {  
-            waitingTime[i]=turnaroundTime[i]-course.get(i).getChour();
-            averageWaitingTime=averageWaitingTime+waitingTime[i];  
-            averageTurnaroundTime=averageTurnaroundTime+turnaroundTime[i];  
-            System.out.print("\n "+(i+1)+"\t "+course.get(i).getChour()+"\t\t "+turnaroundTime[i]+"\t\t "+waitingTime[i]+"\n");  
-        }  
-        /*averageWaitingTime=averageWaitingTime/course.size();;  
-        averageTurnaroundTime=averageTurnaroundTime/course.size();;  
-        System.out.println("\nAverage waiting Time = "+averageWaitingTime+"\n");  
-        System.out.println("Average turnaround time = "+averageTurnaroundTime);  */
-    
+                            }
+                        }
+                        
+                        else if (course.get(i).getCounter()>quantumTime)
+                        {
+                            if(course.get(i).getChour()!=0)
+                            {
+                                c = course.get(i);
+                                counter = i;
+                
+                                if(course.get(counter).getCounter()>0)//loop until all process done then proceed to unfinish process
+                                {
+                                    for (int j = 0; j < quantumTime; j++)
+                                    {
+                                        tmpcourselist.add(c);
+                                        course.get(counter).setCounter();//decrement by 1
+                                        System.out.println("Class " + (count+1));
+                                        System.out.println("Course Name: "+ tmpcourselist.get(count).getName());
+                                        System.out.println("Course Code: "+ tmpcourselist.get(count).getCode());
+                                        System.out.println("Course Credit Hour: "+ tmpcourselist.get(count).getChour());
+                                        System.out.println();
+                                        count+=1;
+                                    }
+                                }                       
+                            }
+                        }
+                    }
+                }
+            }
+            else if(course.isEmpty()){
+                System.out.println("Class " + (count+1));
+                System.out.println("Course Name: NULL");
+                System.out.println("Course Code: NULL");
+                System.out.println("Course Credit Hour: 0");
+                System.out.println();
+                count+=1;
+            }
+        }
         System.out.println();
     }
-
-
-
-
 }
