@@ -21,6 +21,10 @@ public class Course {
     public void setCounter() {
         this.counter -=1;
     }
+    public void setChour(int ch)
+    {
+        this.chour = ch;
+    }
     public String getName() {
         return name;
     }
