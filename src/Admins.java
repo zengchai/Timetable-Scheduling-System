@@ -8,40 +8,45 @@ public class Admins {
     private Scanner z;
     
     public Admins(ArrayList<Course> course) {
-        this.course = course;
+        this.tmpcourse = course;
         this.classtime = 0;
         this.z = new Scanner(System.in);
     }
+
     public void setCourseList(ArrayList<Course> course) {
-        this.course = course;
+        this.tmpcourse = course;
         this.classtime = 0;
         this.z = new Scanner(System.in);
+    }
+
+    public ArrayList<Course> copiarArrayList(){
+        ArrayList<Course> copia = new ArrayList<Course>();
+        for (int i = 0; i < tmpcourse.size(); i++) {
+            copia.add(new Course(tmpcourse.get(i)));
+        }
+        return copia;
     }
 
     public void menu(){
         int option = 0;
         do{
         System.out.println("Welcome to Timetable Scheduling System");
-        System.out.println("\n1. Set Class Time");
-        System.out.println("2. Set Course");
-        System.out.println("3. SRT schedulling");
-        System.out.println("4. Round Robbin schedulling");
-        System.out.println("5. Exit");
+        System.out.println("\n1. Set Timetable");
+        System.out.println("2. SRT schedulling");
+        System.out.println("3. Round Robbin schedulling");
+        System.out.println("4. Exit");
         System.out.print("\nEnter your option: ");
         option = z.nextInt();
         if(option == 1){
             this.setClasstime();
         }
-        else if(option ==2){
-            this.setCourse();
-        }
-        else if(option == 3){
+        else if(option == 2){
             this.srt();
         }
-        else if(option == 4){
+        else if(option == 3){
             this.roundRobin();
         }
-        }while(option != 5);
+        }while(option != 4);
     }
 
     public void setCourse(){
@@ -57,17 +62,24 @@ public class Admins {
         String ln = z.nextLine();
         System.out.print("Enter the lecturer's arrival time: ");
         int la = z.nextInt();
-        Course a = new Course(n,c,ch,ln,la);
-        this.course.add(a);
+        Course a = new Course(n,c,ch,ln,la-1);
+        this.tmpcourse.add(a);
         System.out.println("Enter successfully!");
     }
 
     
     public void setClasstime() {
+        tmpcourse.clear();
         System.out.print("Enter the class time: ");
         int n = z.nextInt();
         z.nextLine();
         this.classtime = n;
+        System.out.print("Enter number of courses: ");
+        int s = z.nextInt();
+        for(int i=0;i<s;i++){
+            System.out.println("\nCourses "+(i+1));
+            this.setCourse();
+        }
     }
 
     public void srt(){
@@ -76,6 +88,7 @@ public class Admins {
         int counter = 0;
         int time = 1;
         Course min;
+        ArrayList<Course> course = this.copiarArrayList();
         ArrayList<Course> tmpcourselist = new ArrayList<Course>();
         do{
             min = new Course(classtime);
@@ -120,6 +133,7 @@ public class Admins {
         int count = 0;
         int counter = 0;
         Course c;
+        ArrayList<Course> course = this.copiarArrayList();
         ArrayList<Course> tmpcourselist = new ArrayList<Course>(classtime);
         
         while(count < z){
