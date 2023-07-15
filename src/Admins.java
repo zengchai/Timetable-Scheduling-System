@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Admins {
     private ArrayList<Course> course;
+    private ArrayList<Course> tmpcourse;
     private int classtime;
     private Scanner z;
     
@@ -25,8 +26,7 @@ public class Admins {
         System.out.println("2. Set Course");
         System.out.println("3. SRT schedulling");
         System.out.println("4. Round Robbin schedulling");
-        System.out.println("5. View timetable");
-        System.out.println("6. Exit");
+        System.out.println("5. Exit");
         System.out.print("\nEnter your option: ");
         option = z.nextInt();
         if(option == 1){
@@ -41,9 +41,7 @@ public class Admins {
         else if(option == 4){
             this.roundRobin();
         }
-        else if(option == 5){
-        }
-        }while(option != 6);
+        }while(option != 5);
     }
 
     public void setCourse(){
@@ -86,7 +84,6 @@ public class Admins {
                 if(course.get(i).getChour()<min.getChour()){
                     min = course.get(i);
                     counter = i;
-                    System.out.println(i);
                 }}
             }
             if(course.size()!=0){
@@ -111,6 +108,7 @@ public class Admins {
                 }
         }while(count < z);
     }
+
 
     public void roundRobin()
     {
