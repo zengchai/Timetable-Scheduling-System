@@ -7,6 +7,9 @@ public class Course {
     private int counter;
     public Course(){
     }
+    public Course(Course c){
+        this(c.getName(),c.getCode(),c.getChour(),c.getLecname(),c.getAtime());
+    }
     public Course(int chour){
         this.chour = chour;
     }
